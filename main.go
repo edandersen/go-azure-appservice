@@ -43,8 +43,8 @@ func main() {
 		for {
 			select {
 			case event := <-watcher.Events:
-				if strings.HasSuffix(event.Name, "App_offline.htm") {
-					fmt.Println("Exiting due to App_offline.htm being present")
+				if strings.HasSuffix(event.Name, "app_offline.htm") {
+					fmt.Println("Exiting due to app_offline.htm being present")
 					os.Exit(0)
 				}
 			}
