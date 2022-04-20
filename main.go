@@ -16,7 +16,7 @@ func main() {
 	router.LoadHTMLGlob("templates/*")
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.tmpl", gin.H{
-			"title": "Hello from Go and Gin",
+			"title": "Hello from Go and Gin running on Azure App Service",
 			"link":  "/json",
 		})
 	})
@@ -26,6 +26,8 @@ func main() {
 			"foo": "bar",
 		})
 	})
+
+	router.Static("/public", "./public")
 
 	// creates a new file watcher for App_offline.htm
 	watcher, err := fsnotify.NewWatcher()
