@@ -1,0 +1,34 @@
+name: Build Go app and push to Azure
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+
+    - name: Build
+      run: go build -o build/go-app.exe -v
+
+    - name: Test
+      run: go test
+      
+    - name: Deploy to Azure
+      uses: Azure/webapps-deploy@v2
+      with:
+        # Name of the Azure Web App
+        app-name: go-azure-appservice
+        # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
+        package: build/
+        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
