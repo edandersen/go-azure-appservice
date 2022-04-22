@@ -4,8 +4,6 @@ View the running app -> https://go-azure-appservice.azurewebsites.net 😎
 
 This is an example repo of how to get a Go / Golang app using the Gin web framework running natively on Windows Azure App Service WITHOUT using a Docker container.
 
-![Go on Azure](public/go-on-azure-small.jpg)
-
 This is not natively supported out of the box (in fact, support for building Go on Kudu / App Service [was removed waaay back in 2017](https://github.com/Azure/app-service-announcements/issues/45)).
 
 HttpPlatformHandler is used to serve the app. This is set up in web.config.
